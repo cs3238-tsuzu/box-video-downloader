@@ -1,6 +1,6 @@
 # Box Video Downloader
 
-**Personal use**: only available in Letus
+**Personal use**: only available for Waseda University
 
 Download the video on box shared inside Letus
 
@@ -17,13 +17,11 @@ git clone https://github.com/huhugiter/box-video-downloader.git
 
 Copy your `box.com` cookies from Chrome into `cookies` file
 
-**Important**: `box.com` cookies not `letus.tus.ac.jp` cookies
-
 ```sh
 go run main.go -i <URL>
 ```
 
-Example URL: `https://tus.app.box.com/s/xxxxxxxxxxxxxxxxxxxxxxxx`
+Example URL: `https://waseda.app.box.com/s/xxxxxxxxxxxxxxxxxxxxxxxx`
 Use `,` to split url, Example: `-i <URL>,<URL>,<URL>`
 
 temp videos will be downloaded into temp/ folder, and complete video will output repo root folder, after finished temp videos will be deleted.

@@ -58,23 +58,23 @@ func main() {
 		fmt.Println("Empty Cookies Provided")
 		return
 	}
-	cookiesStr := strings.Replace(string(cookies), "\n", "", -1)
+	cookiesStr := strings.ReplaceAll(string(cookies), "\n", "")
 
 	cookieJar, _ := cookiejar.New(nil)
 	cs := []*http.Cookie{}
 	for _, c := range strings.Split(cookiesStr, ";") {
 		nv := strings.Split(c, "=")
 		cs = append(cs, &http.Cookie{
-			Name:     nv[0],
-			Value:    nv[1],
+			Name:     strings.TrimSpace(nv[0]),
+			Value:    strings.TrimSpace(nv[1]),
 			Path:     "/",
 			MaxAge:   0,
-			Domain:   "tus.app.box.com",
+			Domain:   "waseda.app.box.com",
 			Secure:   true,
 			HttpOnly: false,
 		})
 	}
-	cookieURL, _ := url.Parse("https://tus.app.box.com/")
+	cookieURL, _ := url.Parse("https://waseda.app.box.com/")
 	cookieJar.SetCookies(cookieURL, cs)
 
 	session := &grequests.Session{

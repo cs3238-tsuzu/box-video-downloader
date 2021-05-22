@@ -162,7 +162,7 @@ func (c *Client) GetRequestToken(content string) (string, error) {
 // GetTokens write read token
 func (c *Client) GetTokens(fileID string, requestToken string, sharedName string) (*Tokens, error) {
 	resp, err := c.session.Post(
-		"https://tus.app.box.com/app-api/enduserapp/elements/tokens",
+		"https://waseda.app.box.com/app-api/enduserapp/elements/tokens",
 		&grequests.RequestOptions{
 			JSON: map[string]interface{}{
 				"fileIDs": []string{"file_" + fileID},
@@ -205,7 +205,7 @@ func (c *Client) GetInfo(writeToken string, fileID string, sharedName string) (*
 			Headers: map[string]string{
 				"Authorization":     "Bearer " + writeToken,
 				"X-Box-Client-Name": "ContentPreview",
-				"BoxApi":            "shared_link=https://tus.app.box.com/s/" + sharedName,
+				"BoxApi":            "shared_link=https://waseda.app.box.com/s/" + sharedName,
 				"X-Rep-Hints":       "[3d][pdf][text][mp3][json][jpg?dimensions=1024x1024&paged=false][jpg?dimensions=2048x2048,png?dimensions=2048x2048][dash,mp4][filmstrip]",
 			},
 		},
@@ -225,7 +225,7 @@ func (c *Client) GetManifest(readToken string, versionID string, fileID string, 
 		"https://dl.boxcloud.com/api/2.0/internal_files/"+fileID+
 			"/versions/"+versionID+
 			"/representations/dash/content/manifest.mpd?access_token="+readToken+
-			"&shared_link=https%3A%2F%2Ftus.app.box.com%2Fs%2F"+sharedName+
+			"&shared_link=https%3A%2F%2Fwaseda.app.box.com%2Fs%2F"+sharedName+
 			"&box_client_name=box-content-preview&box_client_version=2.52.0",
 		nil,
 	)
@@ -270,13 +270,13 @@ func (c *Client) DownloadFile(
 				"/representations/dash/content/video/" + resolution +
 				"/" + part +
 				".m4s?access_token=" + readToken +
-				"&shared_link=https%3A%2F%2Ftus.app.box.com%2Fs%2F" + sharedName +
+				"&shared_link=https%3A%2F%2Fwaseda.app.box.com%2Fs%2F" + sharedName +
 				"&box_client_name=box-content-preview&box_client_version=2.52.0"
 			aURL := "https://dl.boxcloud.com/api/2.0/internal_files/" + fileID +
 				"/versions/" + versionID +
 				"/representations/dash/content/audio/0/" + part +
 				".m4s?access_token=" + readToken +
-				"&shared_link=https%3A%2F%2Ftus.app.box.com%2Fs%2F" + sharedName +
+				"&shared_link=https%3A%2F%2Fwaseda.app.box.com%2Fs%2F" + sharedName +
 				"&box_client_name=box-content-preview&box_client_version=2.52.0"
 
 			// video
